@@ -1,4 +1,4 @@
+// Entrypoint: create and run the spotlight effect application
 import { App } from "./App.js";
 
-// Instantiate the spotlight app
 new App();

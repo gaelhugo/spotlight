@@ -1,27 +1,64 @@
 import { SPOTLIGHT_CONFIG } from "./config.js";
 
+/**
+ * The SpotlightAnimation class is responsible for handling the animation and drawing of the spotlight effect.
+ * It manages the position, radius, and visibility of the spotlight, and provides methods for updating and drawing the effect.
+ */
 export class SpotlightAnimation {
-  constructor({
+  /**
+   * Create a new SpotlightAnimation instance.
+   * @param {number} ease - Easing for position (default: SPOTLIGHT_CONFIG.ease)
+   * @param {number} easeRUp - Easing for radius increase (default: SPOTLIGHT_CONFIG.easeRUp)
+   * @param {number} easeRDown - Easing for radius decrease (default: SPOTLIGHT_CONFIG.easeRDown)
+   */
+  constructor(
     ease = SPOTLIGHT_CONFIG.ease,
     easeRUp = SPOTLIGHT_CONFIG.easeRUp,
     easeRDown = SPOTLIGHT_CONFIG.easeRDown,
-
-  } = {}) {
+  ) {
+    /**
+     * The current x-coordinate of the spotlight.
+     * @type {number}
+     */
     this.x = 0;
+    /**
+     * The current y-coordinate of the spotlight.
+     * @type {number}
+     */
     this.y = 0;
+    /**
+     * The current radius of the spotlight.
+     * @type {number}
+     */
     this.r = 0;
+    /**
+     * The target x-coordinate of the spotlight.
+     * @type {number}
+     */
     this.targetX = 0;
+    /**
+     * The target y-coordinate of the spotlight.
+     * @type {number}
+     */
     this.targetY = 0;
+    /**
+     * The target radius of the spotlight.
+     * @type {number}
+     */
     this.targetR = 0;
     this.visible = false;
     this.spot = null;
     this.mouseTarget = null;
-    this.followMouse = false;
+    
     this.ease = ease;
     this.easeRUp = easeRUp;
     this.easeRDown = easeRDown;
-
   }
+  /**
+   * Reset animation state to a given center
+   * @param {number} centerX
+   * @param {number} centerY
+   */
   reset(centerX, centerY) {
     this.x = centerX;
     this.y = centerY;
@@ -32,8 +69,11 @@ export class SpotlightAnimation {
     this.visible = false;
     this.spot = null;
     this.mouseTarget = null;
-    this.followMouse = false;
+    
   }
+  /**
+   * Update spotlight animation (position, radius, visibility)
+   */
   update() {
     // Animate radius
     if (this.targetR > this.r) {
@@ -63,6 +103,10 @@ export class SpotlightAnimation {
       this.spot = null;
     }
   }
+  /**
+   * Draw the spotlight effect on the canvas
+   * @param {CanvasRenderingContext2D} ctx
+   */
   draw(ctx) {
     if (this.r > 1) {
       ctx.globalCompositeOperation = "destination-out";
