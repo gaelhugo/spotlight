@@ -3,7 +3,7 @@
 export const SPOTLIGHT_CONFIG = {
   // Array of spotlight definitions (center x, y, radius)
   points: [
-    { x: 200, y: 150, r: 90 },
+    { x: 200, y: 150, r: 90 }, // px values for easier editing
     { x: 500, y: 300, r: 70 },
     { x: 350, y: 400, r: 60 }
   ],
