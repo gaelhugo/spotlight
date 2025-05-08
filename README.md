@@ -14,7 +14,8 @@ A modern, maintainable JavaScript application that creates an interactive spotli
 ```
 spotlight/
 ├── src/
-│   ├── App.js              # Main application logic and event handling
+│   ├── App.js              # Minimal application entrypoint, delegates to SpotlightTool
+│   ├── SpotlightTool.js    # Handles all spotlight/canvas logic, events, and animation
 │   ├── Spotlight.js        # Spotlight region class
 │   ├── SpotlightAnimation.js # Spotlight animation and rendering
 │   ├── DimOverlay.js       # Dimming overlay animation
@@ -56,7 +57,8 @@ Edit `src/config.js` to:
 - Change dimming opacity
 
 ## Code Overview
-- **`App.js`**: Orchestrates the spotlight logic, canvas drawing, and mouse event handling.
+- **`App.js`**: Minimal entrypoint that creates the image and passes it (with config) to `SpotlightTool`, which manages all spotlight/canvas logic.
+- **`SpotlightTool.js`**: Handles all canvas drawing, resizing, spotlight/overlay instantiation, and event logic for the spotlight effect.
 - **`Spotlight.js`**: Represents a single spotlight region and provides hit-testing.
 - **`SpotlightAnimation.js`**: Handles smooth animation and rendering of the spotlight.
 - **`DimOverlay.js`**: Manages the animated dimming overlay.
