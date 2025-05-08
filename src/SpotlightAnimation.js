@@ -14,7 +14,7 @@ export class SpotlightAnimation {
   constructor(
     ease = SPOTLIGHT_CONFIG.ease,
     easeRUp = SPOTLIGHT_CONFIG.easeRUp,
-    easeRDown = SPOTLIGHT_CONFIG.easeRDown,
+    easeRDown = SPOTLIGHT_CONFIG.easeRDown
   ) {
     /**
      * The current x-coordinate of the spotlight.
@@ -49,7 +49,7 @@ export class SpotlightAnimation {
     this.visible = false;
     this.spot = null;
     this.mouseTarget = null;
-    
+
     this.ease = ease;
     this.easeRUp = easeRUp;
     this.easeRDown = easeRDown;
@@ -69,7 +69,6 @@ export class SpotlightAnimation {
     this.visible = false;
     this.spot = null;
     this.mouseTarget = null;
-    
   }
   /**
    * Update spotlight animation (position, radius, visibility)
@@ -113,7 +112,7 @@ export class SpotlightAnimation {
       const gradient = ctx.createRadialGradient(
         this.x,
         this.y,
-        this.r * 0.5,
+        this.r * 0.2, //0.5
         this.x,
         this.y,
         this.r
