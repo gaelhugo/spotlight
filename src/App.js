@@ -1,6 +1,7 @@
 import { SPOTLIGHT_CONFIG } from "./config.js";
 import { convertPointsToPercent } from "./utils.js";
 import { SpotlightTool } from "./SpotlightTool.js";
+import { SequenceManager } from "./SequenceManager.js";
 
 // Main application class for the spotlight effect UI and animation
 export class App {
@@ -20,9 +21,10 @@ export class App {
         SPOTLIGHT_CONFIG.points,
         this.img.naturalWidth || this.img.width,
         this.img.naturalHeight || this.img.height
-      )
+      ),
     };
     this.spotlightTool = new SpotlightTool(this.img, percentConfig);
+    this.sequenceManager = new SequenceManager(this.spotlightTool, 1200);
 
     // Start animation after image load
     if (this.img.complete) this.onImageLoad();
@@ -35,5 +37,6 @@ export class App {
    */
   onImageLoad() {
     this.spotlightTool.start();
+    setTimeout(() => this.sequenceManager.play(), 2000);
   }
 }
