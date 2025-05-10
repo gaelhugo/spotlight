@@ -26,6 +26,10 @@ export class App {
     this.spotlightTool = new SpotlightTool(this.img, percentConfig);
     this.sequenceManager = new SequenceManager(this.spotlightTool, 1200);
 
+    this.spotlightTool.addEventListener("click", (spot) => {
+      console.log("Spot clicked:", spot);
+    });
+
     // Start animation after image load
     if (this.img.complete) this.onImageLoad();
     else this.img.onload = () => this.onImageLoad();

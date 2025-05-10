@@ -1,13 +1,15 @@
 import { Spotlight } from "./Spotlight.js";
 import { DimOverlay } from "./DimOverlay.js";
 import { SpotlightAnimation } from "./SpotlightAnimation.js";
+import EventEmitter from "@onemorestudio/eventemitterjs";
 // Handles all canvas drawing, resizing, and event logic for the spotlight application
-export class SpotlightTool {
+export class SpotlightTool extends EventEmitter {
   /**
    * @param {HTMLImageElement} img - The image element
    * @param {object} config - The spotlight configuration object
    */
   constructor(img, config) {
+    super();
     this.img = img;
     this.config = config;
     // Store relative config
@@ -85,6 +87,14 @@ export class SpotlightTool {
     this.canvas.addEventListener("mouseleave", () => {
       this.spotlightAnim.targetR = 0;
       this.dimOverlay.setTarget(0);
+    });
+
+    this.canvas.addEventListener("click", (evt) => {
+      const { x, y } = this.getCursorPos(evt);
+      const spot = this.spotlights.find((s) => s.contains(x, y));
+      if (spot) {
+        this.emit("click", [spot]);
+      }
     });
   }
 
